@@ -77,5 +77,5 @@ document.addEventListener('drop', (event) => {
 
 // Fix bug window resized in WindowsOS
 setTimeout(function () {
-    ipcRenderer.send('resize-window', 320, 130);
+    ipcRenderer.send('resize-window', 340, 130);
 }, 1000);

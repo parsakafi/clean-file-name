@@ -8,7 +8,7 @@ app.commandLine.appendSwitch('ignore-certificate-errors');
 
 function createWindow() {
     const win = new BrowserWindow({
-        width: 320,
+        width: 340,
         height: 130,
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
