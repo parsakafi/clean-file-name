@@ -2,9 +2,19 @@ const fs = require('fs');
 const path = require("path");
 const { ipcRenderer } = require('electron');
 
+
+function removeFromString(arr, str) {
+    let regex = new RegExp("\\b" + arr.join('|') + "\\b", "gi")
+    return str.replace(regex, '')
+}
+
 function cleanFileName(string) {
-    string = string.split(/(?=[A-Z])/);
-    string = string.join('-');
+    let wordFilter = ['RARBG', 'x264', 'x265', 'WEBRip', '1080p', '720p', '480p', 'Film2Media'];
+
+    string = removeFromString(wordFilter, string);
+
+    // string = string.split(/(?=[A-Z])/);
+    // string = string.join('-');
 
     string = string
         .trim()
