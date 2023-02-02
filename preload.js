@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require("path");
-const { ipcRenderer } = require('electron');
 
 
 function removeFromString(arr, str) {
@@ -9,7 +8,9 @@ function removeFromString(arr, str) {
 }
 
 function cleanFileName(string) {
-    let wordFilter = ['RARBG', 'x264', 'x265', 'WEBRip', '1080p', '720p', '480p', 'Film2Media'];
+    let wordFilter = ['RARBG', 'x264', 'x265', 'H264', 'WEBRip', '1080p', '720p',
+        '480p', 'Film2Media', 'WEB', 'CAKES', 'VXT', 'BluRay', 'SoftSub', 'MovieCottage',
+        '10bit', 'AAC'];
 
     string = removeFromString(wordFilter, string);
 
@@ -84,8 +85,3 @@ document.addEventListener('drop', (event) => {
             fileListMessage.innerText = `Rename ${fileArr.length} File/Directory`;
     }, 1000);
 });
-
-// Fix bug window resized in WindowsOS
-setTimeout(function () {
-    ipcRenderer.send('resize-window', 340, 130);
-}, 1000);

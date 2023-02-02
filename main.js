@@ -9,24 +9,25 @@ app.commandLine.appendSwitch('ignore-certificate-errors');
 function createWindow() {
     const win = new BrowserWindow({
         width: 340,
-        height: 130,
+        height: 80,
+        frame: false,
+        skipTaskbar: true,
+        opacity: 0.95,
+        setMenu: null,
+        resizable: false,
+        alwaysOnTop: true,
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
             contextIsolation: false,
             nodeIntegration: true,
             autoHideMenuBar: true,
             allowDisplayingInsecureContent: true,
-            allowRunningInsecureContent: true,
-            alwaysOnTop: true
+            allowRunningInsecureContent: true
         }
     });
 
     win.setIcon(`${__dirname}${path.sep}assets${path.sep}app.ico`);
 
-    win.setResizable(false);
-    win.setMenu(null);
-    win.setOpacity(0.95);
-    win.setAlwaysOnTop(true, "normal");
     win.loadFile('index.html');
 }
 
@@ -36,9 +37,15 @@ ipcMain.on('dropped-file', (event, arg) => {
 })
 
 ipcMain.on('resize-window', (event, width, height) => {
-    let browserWindow = BrowserWindow.fromWebContents(event.sender)
-    browserWindow.setSize(width, height)
+    let browserWindow = BrowserWindow.fromWebContents(event.sender);
+    browserWindow.setResizable(true);
+    browserWindow.setSize(width, height);
+    browserWindow.setResizable(false);
 })
+
+ipcMain.on('close-me', (evt, arg) => {
+    app.quit()
+});
 
 app.whenReady().then(() => {
     createWindow()
@@ -51,7 +58,6 @@ app.whenReady().then(() => {
 })
 
 app.on('window-all-closed', () => {
-    if (process.platform !== 'darwin') {
+    if (process.platform !== 'darwin')
         app.quit()
-    }
 })

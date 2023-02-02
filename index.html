@@ -15,27 +15,98 @@
             margin: 0;
             padding: 0;
             height: 100vh;
+            font-size: 16px;
         }
 
         body {
-            cursor: default;
+            /* cursor: default; */
             user-select: none;
-            padding: 15px;
             background-color: #ba83ca;
             background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
             overflow: hidden;
             letter-spacing: .05em;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI Adjusted", "Segoe UI", "Liberation Sans", sans-serif;
             color: #333;
+            padding: 12px 15px 15px;
+        }
+
+        body.minimize {
+            padding: 10px;
+        }
+
+        body.minimize h1,
+        body.minimize p,
+        body.minimize .minimize-icon,
+        body.minimize .close-window {
+            display: none;
+        }
+
+        body.minimize .maximize-icon {
+            display: block;
+        }
+
+        .move-window {
+            cursor: move;
+            -webkit-user-select: none;
+            -webkit-app-region: drag;
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0.4);
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+        }
+
+        .title-minimize {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         h1 {
-            margin: 0;
+            margin: 0 0 .5em;
             padding: 0;
             line-height: 1;
             background: -webkit-linear-gradient(#000, #333);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            font-size: 1.4em;
+            display: block;
+        }
+
+        p {
+            margin: 0;
+            padding: 0;
+        }
+
+        .minimize-icon,
+        .maximize-icon {
+            width: 15px;
+            height: 15px;
+            fill: #333;
+        }
+
+        .maximize-icon {
+            display: none;
+            fill: none;
+            width: 50px;
+            height: 50px;
+        }
+
+        .maximize-icon path,
+        .close-icon path {
+            stroke: #333;
+        }
+
+        .close-icon {
+            width: 25px;
+            height: 25px;
+            fill: none;
+        }
+
+        .close-window {
+            margin-right: 15px;
+            margin-left: auto;
         }
 
         @media (prefers-color-scheme: dark) {
@@ -45,10 +116,23 @@
                 background-image: linear-gradient(to right top, #3f0b28, #39102f, #321535, #291a39, #201d3b, #14223d, #07263d, #00293b, #002d37, #063031, #16332a, #243426);
             }
 
+            .move-window {
+                background-color: rgba(0, 0, 0, 0.4);
+            }
+
             h1 {
                 background: -webkit-linear-gradient(#fff, rgb(179, 179, 179));
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
+            }
+
+            .minimize-icon,
+            .close-icon path {
+                fill: #fff;
+            }
+
+            .maximize-icon path {
+                stroke: #fff;
             }
         }
 
@@ -56,10 +140,62 @@
 </head>
 
 <body>
-    <h1>Clean File Name</h1>
+    <div class="move-window"></div>
+    <div class="title-minimize">
+        <h1>Clean File Name</h1>
+
+        <a href="#" id="close-window" class="close-window">
+            <svg viewBox="-102.4 -102.4 1228.80 1228.80" class="close-icon" xmlns="http://www.w3.org/2000/svg"
+                fill="#dd53be" transform="rotate(0)matrix(1, 0, 0, 1, 0, 0)" title="Close">
+                <g id="SVGRepo_bgCarrier" stroke-width="0" />
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC"
+                    stroke-width="2.048" />
+                <g id="SVGRepo_iconCarrier">
+                    <path fill="#de8bbb"
+                        d="M195.2 195.2a64 64 0 0190.496 0L512 421.504 738.304 195.2a64 64 0 0190.496 90.496L602.496 512 828.8 738.304a64 64 0 01-90.496 90.496L512 602.496 285.696 828.8a64 64 0 01-90.496-90.496L421.504 512 195.2 285.696a64 64 0 010-90.496z" />
+                </g>
+            </svg>
+        </a>
+        <a href="#" id="toggle-window">
+            <svg fill="#000000" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 480.221 480.221" xml:space="preserve"
+                class="minimize-icon" title="Maximize">
+                <g>
+                    <path d="M480.158,260.878v166.979c0,28.874-23.501,52.363-52.381,52.363H52.453c-28.889,0-52.39-23.489-52.39-52.363V52.938
+		c0-28.874,23.501-52.369,52.39-52.369h167.434c-9.011,9.244-15.004,21.45-16.316,35.003H52.447
+		c-9.582,0-17.378,7.791-17.378,17.366v374.92c0,9.569,7.796,17.36,17.378,17.36h375.325c9.581,0,17.372-7.791,17.372-17.36V277.169
+		C458.33,275.904,470.56,270.236,480.158,260.878z M399.287,230.096H284.831L470.099,44.829c10.249-10.261,10.249-26.882,0-37.131
+		c-10.256-10.261-26.883-10.261-37.132-0.012L247.7,192.958V78.497c0-14.499-11.757-26.262-26.259-26.262
+		c-7.25,0-13.816,2.932-18.569,7.689c-4.752,4.765-7.693,11.325-7.693,18.572v177.854c0,14.499,11.754,26.256,26.256,26.256h177.852
+		c14.505,0,26.256-11.751,26.256-26.256S413.792,230.096,399.287,230.096z" />
+                </g>
+            </svg>
+
+            <svg fill="#000000" viewBox="0 0 24 24" data-name="Flat Line" xmlns="http://www.w3.org/2000/svg"
+                class="maximize-icon" title="Minimize">
+                <path id="primary" d="M9,9,3.29,3.29M15,9l5.71-5.71M9,15,3.29,20.71m17.42,0L15,15"
+                    style=" stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;">
+                </path>
+                <path id="primary-2" data-name="primary" d="M3,8V4A1,1,0,0,1,4,3H8"
+                    style=" stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;">
+                </path>
+                <path id="primary-3" data-name="primary" d="M16,3h4a1,1,0,0,1,1,1V8"
+                    style=" stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;">
+                </path>
+                <path id="primary-4" data-name="primary" d="M8,21H4a1,1,0,0,1-1-1V16"
+                    style=" stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;">
+                </path>
+                <path id="primary-5" data-name="primary" d="M21,16v4a1,1,0,0,1-1,1H16"
+                    style=" stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;">
+                </path>
+            </svg>
+        </a>
+    </div>
     <p id="file-list">
         Drag a file or folder into the window.
     </p>
+
+    <script src="renderer.js"></script>
 </body>
 
 </html>
