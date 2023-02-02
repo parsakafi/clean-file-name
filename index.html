@@ -79,11 +79,9 @@
             padding: 0;
         }
 
-        .minimize-icon,
-        .maximize-icon {
-            width: 15px;
-            height: 15px;
-            fill: #333;
+        .minimize-icon {
+            width: 18px;
+            height: 18px;
         }
 
         .maximize-icon {
@@ -93,6 +91,7 @@
             height: 50px;
         }
 
+        .minimize-icon path,
         .maximize-icon path,
         .close-icon path {
             stroke: #333;
@@ -105,7 +104,7 @@
         }
 
         .close-window {
-            margin-right: 15px;
+            margin-right: 7px;
             margin-left: auto;
         }
 
@@ -126,16 +125,15 @@
                 -webkit-text-fill-color: transparent;
             }
 
-            .minimize-icon,
             .close-icon path {
                 fill: #fff;
             }
 
+            .minimize-icon path,
             .maximize-icon path {
                 stroke: #fff;
             }
         }
-
     </style>
 </head>
 
@@ -157,17 +155,21 @@
             </svg>
         </a>
         <a href="#" id="toggle-window">
-            <svg fill="#000000" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 480.221 480.221" xml:space="preserve"
-                class="minimize-icon" title="Maximize">
-                <g>
-                    <path d="M480.158,260.878v166.979c0,28.874-23.501,52.363-52.381,52.363H52.453c-28.889,0-52.39-23.489-52.39-52.363V52.938
-		c0-28.874,23.501-52.369,52.39-52.369h167.434c-9.011,9.244-15.004,21.45-16.316,35.003H52.447
-		c-9.582,0-17.378,7.791-17.378,17.366v374.92c0,9.569,7.796,17.36,17.378,17.36h375.325c9.581,0,17.372-7.791,17.372-17.36V277.169
-		C458.33,275.904,470.56,270.236,480.158,260.878z M399.287,230.096H284.831L470.099,44.829c10.249-10.261,10.249-26.882,0-37.131
-		c-10.256-10.261-26.883-10.261-37.132-0.012L247.7,192.958V78.497c0-14.499-11.757-26.262-26.259-26.262
-		c-7.25,0-13.816,2.932-18.569,7.689c-4.752,4.765-7.693,11.325-7.693,18.572v177.854c0,14.499,11.754,26.256,26.256,26.256h177.852
-		c14.505,0,26.256-11.751,26.256-26.256S413.792,230.096,399.287,230.096z" />
+            <svg fill="#000000" width="800px" height="800px" viewBox="0 0 24 24" id="minimize-size"
+                data-name="Flat Line" xmlns="http://www.w3.org/2000/svg" class="minimize-icon" title="Maximize">
+                <g id="SVGRepo_bgCarrier" stroke-width="0" />
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
+                <g id="SVGRepo_iconCarrier">
+                    <path id="primary" d="M8.71,15.29,3,21M8.71,8.71,3,3M21,21l-5.71-5.71M21,3,15.29,8.71"
+                        style=" stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;" />
+                    <path id="primary-2" data-name="primary" d="M4,15H8a1,1,0,0,1,1,1v4"
+                        style=" stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;" />
+                    <path id="primary-3" data-name="primary" d="M9,4V8A1,1,0,0,1,8,9H4"
+                        style=" stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;" />
+                    <path id="primary-4" data-name="primary" d="M15,20V16a1,1,0,0,1,1-1h4"
+                        style=" stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;" />
+                    <path id="primary-5" data-name="primary" d="M20,9H16a1,1,0,0,1-1-1V4"
+                        style=" stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;" />
                 </g>
             </svg>
 
