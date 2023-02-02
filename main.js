@@ -1,10 +1,24 @@
 const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
+let mainWindow = null
 
 app.disableHardwareAcceleration()
 // app.commandLine.appendSwitch('force_high_performance_gpu')
 app.commandLine.appendSwitch('--log-level=0');
 app.commandLine.appendSwitch('ignore-certificate-errors');
+
+const gotTheLock = app.requestSingleInstanceLock()
+
+if (!gotTheLock) {
+    app.quit()
+} else {
+    app.on('second-instance', (event, commandLine, workingDirectory) => {
+        if (mainWindow) {
+            if (mainWindow.isMinimized()) mainWindow.restore()
+            mainWindow.focus()
+        }
+    })
+}
 
 function createWindow() {
     const win = new BrowserWindow({
