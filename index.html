@@ -19,7 +19,6 @@
         }
 
         body {
-            /* cursor: default; */
             user-select: none;
             background-color: #ba83ca;
             background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
@@ -48,16 +47,18 @@
         .move-window {
             cursor: move;
             -webkit-user-select: none;
+            user-select: none;
             -webkit-app-region: drag;
             height: 10px;
             background-color: rgba(255, 255, 255, 0.4);
+            display: block;
             position: fixed;
             top: 0;
             right: 0;
             left: 0;
         }
 
-        .title-minimize {
+        .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -69,6 +70,7 @@
             line-height: 1;
             background: -webkit-linear-gradient(#000, #333);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
             font-size: 1.4em;
             display: block;
@@ -122,6 +124,7 @@
             h1 {
                 background: -webkit-linear-gradient(#fff, rgb(179, 179, 179));
                 -webkit-background-clip: text;
+                background-clip: text;
                 -webkit-text-fill-color: transparent;
             }
 
@@ -134,15 +137,16 @@
                 stroke: #fff;
             }
         }
+
     </style>
 </head>
 
 <body>
-    <div class="move-window"></div>
-    <div class="title-minimize">
+    <a class="move-window" title="Move Window"></a>
+    <div class="header">
         <h1>Clean File Name</h1>
 
-        <a href="#" id="close-window" class="close-window">
+        <a href="#" id="close-window" class="close-window" title="Close">
             <svg viewBox="-102.4 -102.4 1228.80 1228.80" class="close-icon" xmlns="http://www.w3.org/2000/svg"
                 fill="#dd53be" transform="rotate(0)matrix(1, 0, 0, 1, 0, 0)" title="Close">
                 <g id="SVGRepo_bgCarrier" stroke-width="0" />
@@ -154,7 +158,8 @@
                 </g>
             </svg>
         </a>
-        <a href="#" id="toggle-window">
+
+        <a href="#" id="toggle-window" title="Toggle Window Size">
             <svg fill="#000000" width="800px" height="800px" viewBox="0 0 24 24" id="minimize-size"
                 data-name="Flat Line" xmlns="http://www.w3.org/2000/svg" class="minimize-icon" title="Maximize">
                 <g id="SVGRepo_bgCarrier" stroke-width="0" />

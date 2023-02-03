@@ -30,6 +30,7 @@ function createWindow() {
         setMenu: null,
         resizable: false,
         alwaysOnTop: true,
+        minimizable: false,
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
             contextIsolation: false,
