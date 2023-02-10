@@ -8,10 +8,11 @@ function removeFromString(arr, str) {
 
 function cleanFileName(string) {
     let wordFilter = ['RARBG', 'x264', 'x265', 'H264', 'WEBRip', '1080p', '720p',
-        '480p', 'Film2Media', 'WEB', 'CAKES', 'VXT', 'BluRay', 'SoftSub', 'MovieCottage',
-        '10bit', 'AAC'];
+        '480p', 'WEB', 'CAKES', 'VXT', 'BluRay', 'SoftSub', '10bit', 'AAC', 'Sub'],
+        siteNameFilter = ['Film2Media', 'MovieCottage', 'DonyayeSerial', 'UPTV.co'];
 
     string = removeFromString(wordFilter, string);
+    string = removeFromString(siteNameFilter, string);
 
     // string = string.split(/(?=[A-Z])/);
     // string = string.join('-');
