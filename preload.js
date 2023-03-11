@@ -6,10 +6,17 @@ function removeFromString(arr, str) {
     return str.replace(regex, '')
 }
 
+function trimChar(origString, charToTrim) {
+    // Escape special characters for use in a regular expression
+    charToTrim = charToTrim.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+    var regEx = new RegExp("^[" + charToTrim + "]+|[" + charToTrim + "]+$", "g");
+    return origString.replace(regEx, "");
+};
+
 function cleanFileName(string) {
     let wordFilter = ['RARBG', 'x264', 'x265', 'H264', 'WEBRip', '1080p', '720p',
         '480p', 'WEB', 'CAKES', 'VXT', 'BluRay', 'SoftSub', '10bit', 'AAC', 'Sub'],
-        siteNameFilter = ['Film2Media', 'MovieCottage', 'DonyayeSerial', 'UPTV.co'];
+        siteNameFilter = ['Film2Media', 'Film2Movie', 'My-Film', 'MovieCottage', 'DonyayeSerial', 'UPTV.co', 'SkyFilm'];
 
     string = removeFromString(wordFilter, string);
     string = removeFromString(siteNameFilter, string);
@@ -20,7 +27,7 @@ function cleanFileName(string) {
     string = string
         .trim()
         .replace(/\.+/g, ' ')
-        .replace(/\-+/g, ' ')
+        //.replace(/\-+/g, ' ')
         .replace(/\_+/g, ' ')
         // .toLowerCase()
         .replace(/[^A-Za-z0-9- ]/g, '')
@@ -38,7 +45,10 @@ function cleanFileName(string) {
             words[i] = words[i][0].toUpperCase() + words[i].substr(1);
     }
 
-    return words.join(" ");
+    words = words.join(" ");
+    words = (trimChar(words, '-')).trim();
+
+    return words;
 }
 
 document.addEventListener('dragover', (e) => {
