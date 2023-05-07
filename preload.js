@@ -15,8 +15,9 @@ function trimChar(origString, charToTrim) {
 
 function cleanFileName(string) {
     let wordFilter = ['RARBG', 'x264', 'x265', 'H264', 'WEBRip', '1080p', '720p',
-        '480p', 'WEB', 'CAKES', 'VXT', 'BluRay', 'SoftSub', '10bit', 'AAC', 'Sub'],
-        siteNameFilter = ['Film2Media', 'Film2Movie', 'My-Film', 'MovieCottage', 'DonyayeSerial', 'UPTV.co', 'SkyFilm'];
+        '480p', 'WEB', 'CAKES', 'VXT', 'BluRay', 'SoftSub', '10bit', 'AAC', 'Sub',
+        'DL', 'BrRip', 'DVDrip', '6CH'],
+        siteNameFilter = ['Film2Media', 'Film2Movie', 'My-Film', 'MovieCottage', 'DonyayeSerial', 'UPTV.co', 'SkyFilm', 'DigiMoviez', 'Film9', 'AioFilm', 'com', 'ir', 'YIFY', 'FilmKio', 'Film2serial'];
 
     string = removeFromString(wordFilter, string);
     string = removeFromString(siteNameFilter, string);
