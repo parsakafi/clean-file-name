@@ -1,7 +1,7 @@
 {
   "name": "clean-file-name",
   "version": "1.0.1",
-  "description": "",
+  "description": "Clean File/Dir Name",
   "main": "main.js",
   "scripts": {
     "start": "electron .",

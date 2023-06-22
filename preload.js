@@ -14,10 +14,12 @@ function trimChar(origString, charToTrim) {
 };
 
 function cleanFileName(string) {
-    let wordFilter = ['RARBG', 'x264', 'x265', 'H264', 'WEBRip', '1080p', '720p',
+    let wordFilter = ['RARBG', 'x264', 'x265', 'H264', 'WEBRip', '1080p', '1080', '720p',
         '480p', 'WEB', 'CAKES', 'VXT', 'BluRay', 'SoftSub', '10bit', 'AAC', 'Sub',
-        'DL', 'BrRip', 'DVDrip', '6CH'],
-        siteNameFilter = ['Film2Media', 'Film2Movie', 'My-Film', 'MovieCottage', 'DonyayeSerial', 'UPTV.co', 'SkyFilm', 'DigiMoviez', 'Film9', 'AioFilm', 'com', 'ir', 'YIFY', 'FilmKio', 'Film2serial'];
+        'DL', 'BrRip', 'DVDrip', '6CH', '[SS]'],
+        siteNameFilter = ['Film2Media', 'Film2Movie', 'My-Film', 'MovieCottage', 'DonyayeSerial', 'UPTV.co',
+            'SkyFilm', 'DigiMoviez', 'Film9', 'AioFilm', 'com', 'ir', 'YIFY', 'FilmKio', 'Film2serial', 'sorenfilm',
+            'AioFilm.com'];
 
     string = removeFromString(wordFilter, string);
     string = removeFromString(siteNameFilter, string);
