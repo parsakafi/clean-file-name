@@ -1,9 +1,27 @@
 const fs = require('fs');
 const path = require("path");
 
-function removeFromString(arr, str) {
-    let regex = new RegExp("\\b" + arr.join('|') + "\\b", "gi")
+function removeFromString(str, filterArray) {
+    let regex = new RegExp("\\b" + filterArray.join('|') + "\\b", "gi")
     return str.replace(regex, '')
+}
+
+function sortArrayByLength(arr, descending = false) {
+    return arr.sort(function (a, b) {
+        if (descending)
+            return b.length - a.length || b.localeCompare(a);
+        else
+            return a.length - b.length || a.localeCompare(b);
+    });
+}
+
+function toLowerCaseArray(items) {
+    var lowerCaseItems = [];
+    for (var i = 0; i < items.length; i++) {
+        lowerCaseItems.push(items[i].toLowerCase());
+    }
+
+    return lowerCaseItems;
 }
 
 function trimChar(origString, charToTrim) {
@@ -14,18 +32,23 @@ function trimChar(origString, charToTrim) {
 };
 
 function cleanFileName(string) {
-    let wordFilter = ['RARBG', 'x264', 'x265', 'H264', 'WEBRip', '1080p', '1080', '720p',
-        '480p', 'WEB', 'CAKES', 'VXT', 'BluRay', 'SoftSub', '10bit', 'AAC', 'Sub',
-        'DL', 'BrRip', 'DVDrip', '6CH', '[SS]'],
-        siteNameFilter = ['Film2Media', 'Film2Movie', 'My-Film', 'MovieCottage', 'DonyayeSerial', 'UPTV.co',
-            'SkyFilm', 'DigiMoviez', 'Film9', 'AioFilm', 'com', 'ir', 'YIFY', 'FilmKio', 'Film2serial', 'sorenfilm',
-            'AioFilm.com'];
+    let wordsFilter = ['x264', 'x265', 'H264', 'WEBRip', '1080p', '1080', '720p', '720',
+        '480p', 'WEB', 'CAKES', 'VXT', 'BluRay', 'HardSub', 'SoftSub', '10bit', 'AAC', 'Subbed', 'Sub',
+        'DL', 'BrRip', 'DVDrip', '6CH', 'PSA', 'HEVC', '2CH', 'NF', 'Pahe', 'AM', 'webdl', 'web-dl', 'DH',
+        'com', 'ir'],
 
-    string = removeFromString(wordFilter, string);
-    string = removeFromString(siteNameFilter, string);
+        siteNamesFilter = ['RARBG', 'Film2Media', 'Film2Movie', 'My-Film', 'MovieCottage', 'DonyayeSerial', 'UPTV.co',
+            'SkyFilm', 'DigiMoviez', 'Film9', 'AioFilm', 'YIFY', 'FilmKio', 'Film2serial', 'sorenfilm',
+            'AioFilm.com', 'AvaMovie', 'HexDL.com', 'Hex', 'ZarFilm', 'Nikimovie', 'AceMovies', 'SubsPlease'];
 
-    // string = string.split(/(?=[A-Z])/);
-    // string = string.join('-');
+    wordsFilter = toLowerCaseArray(sortArrayByLength(wordsFilter, true));
+    siteNamesFilter = sortArrayByLength(siteNamesFilter, true);
+
+    //string = removeFromString(string, wordsFilter);
+    string = removeFromString(string, siteNamesFilter);
+
+    //string = string.split(/(?=[A-Z])/);
+    //string = string.join('-');
 
     string = string
         .trim()
@@ -37,20 +60,22 @@ function cleanFileName(string) {
         .replace(/\s+/g, ' ')
         .trim();
 
-    let words = string.split(" ");
+    let words = string.split(" "),
+        cleanWords = [];
 
     words = words.filter(function (el) {
         return el != null;
     });
 
     for (let i = 0; i < words.length; i++) {
-        if (words[i][0])
-            words[i] = words[i][0].toUpperCase() + words[i].substr(1);
+        if (!wordsFilter.includes(words[i].toLowerCase()))
+            cleanWords.push(words[i][0].toUpperCase() + words[i].substr(1));
     }
 
-    words = words.join(" ");
-    words = (trimChar(words, '-')).trim();
-
+    words = cleanWords.join(" ").trim();
+    for (i = 1; i <= 3; i++) {
+        words = (trimChar(words, '-')).trim();
+    }
     return words;
 }
 
@@ -83,7 +108,7 @@ document.addEventListener('drop', (event) => {
 
         let newFileName = cleanFileName(fileName);
 
-        if (newFileName != fileName + fileExt) {
+        if (newFileName != fileName) {
             fs.rename(f.path, fileParse.dir + path.sep + newFileName + fileExt, function (err) {
                 if (err)
                     fileListMessage.innerText = err
