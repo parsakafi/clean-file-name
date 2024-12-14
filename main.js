@@ -2,6 +2,9 @@ const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 let mainWindow = null
 
+//app.commandLine.appendSwitch('remote-debugging-port', '8315');
+//app.commandLine.appendSwitch('host-rules', 'MAP * 127.0.0.1');
+
 app.disableHardwareAcceleration()
 // app.commandLine.appendSwitch('force_high_performance_gpu')
 app.commandLine.appendSwitch('--log-level=0');
