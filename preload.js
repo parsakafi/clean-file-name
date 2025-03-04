@@ -35,11 +35,11 @@ function cleanFileName(string) {
     let wordsFilter = ['x264', 'x265', 'H264', 'WEBRip', '1080p', '1080', '720p', '720',
         '480p', 'WEB', 'CAKES', 'VXT', 'BluRay', 'HardSub', 'SoftSub', '10bit', 'AAC', 'Subbed', 'Sub',
         'DL', 'BrRip', 'DVDrip', '6CH', 'PSA', 'HEVC', '2CH', 'NF', 'Pahe', 'AM', 'webdl', 'web-dl', 'DH',
-        'com', 'ir', 'AAC5.1', 'AAC5', 'rmt', 'Farsi', 'Dubbed'],
+        'com', 'ir', 'AAC5.1', 'AAC5', 'rmt', 'EBTV', 'Farsi', 'Dubbed', 'DL'],
 
         siteNamesFilter = ['RARBG', 'Film2Media', 'Film2Movie', 'My-Film', 'MovieCottage', 'DonyayeSerial', 'UPTV.co',
             'SkyFilm', 'DigiMoviez', 'Film9', 'AioFilm', 'YIFY', 'FilmKio', 'Film2serial', 'sorenfilm',
-            'AioFilm.com', 'AvaMovie', 'HexDL.com', 'Hex', 'ZarFilm', 'Nikimovie', 'AceMovies', 'SubsPlease', 'YTS.MX'];
+            'AioFilm.com', 'AvaMovie', 'HexDL.com', 'Hex', 'ZarFilm', 'Nikimovie', 'AceMovies', 'SubsPlease', 'YTS.MX', 'Farda', 'Bearfish'];
 
     wordsFilter = toLowerCaseArray(sortArrayByLength(wordsFilter, true));
     siteNamesFilter = sortArrayByLength(siteNamesFilter, true);
